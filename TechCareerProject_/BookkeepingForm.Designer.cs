@@ -43,13 +43,16 @@
             this.cmbExpenseType = new System.Windows.Forms.ComboBox();
             this.txtProfileID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.btnViewTotal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookkeeping)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(37, 486);
+            this.btnBack.Location = new System.Drawing.Point(37, 472);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(82, 34);
             this.btnBack.TabIndex = 0;
@@ -59,7 +62,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(125, 486);
+            this.btnExit.Location = new System.Drawing.Point(125, 472);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(82, 34);
             this.btnExit.TabIndex = 1;
@@ -76,7 +79,6 @@
             this.dgvBookkeeping.RowTemplate.Height = 24;
             this.dgvBookkeeping.Size = new System.Drawing.Size(729, 131);
             this.dgvBookkeeping.TabIndex = 2;
-            this.dgvBookkeeping.SelectionChanged += new System.EventHandler(this.dgvBookkeeping_SelectionChanged);
             // 
             // label1
             // 
@@ -91,7 +93,7 @@
             // dgvOrders
             // 
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrders.Location = new System.Drawing.Point(37, 271);
+            this.dgvOrders.Location = new System.Drawing.Point(37, 306);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.RowHeadersWidth = 51;
             this.dgvOrders.RowTemplate.Height = 24;
@@ -102,7 +104,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(363, 231);
+            this.label2.Location = new System.Drawing.Point(363, 266);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 22);
             this.label2.TabIndex = 3;
@@ -110,7 +112,7 @@
             // 
             // btnInsertExpense
             // 
-            this.btnInsertExpense.Location = new System.Drawing.Point(874, 368);
+            this.btnInsertExpense.Location = new System.Drawing.Point(874, 403);
             this.btnInsertExpense.Name = "btnInsertExpense";
             this.btnInsertExpense.Size = new System.Drawing.Size(82, 34);
             this.btnInsertExpense.TabIndex = 1;
@@ -187,11 +189,43 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Personel Profil ID";
             // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(631, 207);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(135, 32);
+            this.btnView.TabIndex = 7;
+            this.btnView.Text = "Detay Görüntüle";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(34, 214);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(44, 16);
+            this.lblTotal.TabIndex = 8;
+            this.lblTotal.Text = "label7";
+            // 
+            // btnViewTotal
+            // 
+            this.btnViewTotal.Location = new System.Drawing.Point(490, 207);
+            this.btnViewTotal.Name = "btnViewTotal";
+            this.btnViewTotal.Size = new System.Drawing.Size(135, 32);
+            this.btnViewTotal.TabIndex = 7;
+            this.btnViewTotal.Text = "Ciro Görüntüle";
+            this.btnViewTotal.UseVisualStyleBackColor = true;
+            this.btnViewTotal.Click += new System.EventHandler(this.btnViewTotal_Click);
+            // 
             // BookkeepingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1158, 567);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.btnViewTotal);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.cmbExpenseType);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -234,5 +268,8 @@
         private System.Windows.Forms.ComboBox cmbExpenseType;
         private System.Windows.Forms.TextBox txtProfileID;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Button btnViewTotal;
     }
 }

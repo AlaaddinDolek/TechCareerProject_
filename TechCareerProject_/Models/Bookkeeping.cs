@@ -18,8 +18,6 @@ namespace TechCareerProject_.Models
         public string Description { get; set; }
         public string EmployeeFullName { get; set; }
 
-        public int? OrderID { get; set; }
-
 
         //Relational Properties
 
@@ -30,7 +28,6 @@ namespace TechCareerProject_.Models
             if (Order != null)
             {
                 Amount = Order.TotalPrice;
-                OrderID = Order.ID;
             }
         }
 

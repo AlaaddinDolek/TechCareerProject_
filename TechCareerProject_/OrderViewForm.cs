@@ -40,6 +40,9 @@ namespace TechCareerProject_
             dgvOrders.DataSource = orderRep.GetAll();
             
             dgvOrders.Columns["AppUser"].Visible = false;
+            dgvOrders.Columns["Bookkeeping"].Visible = false;
+
+
             //dgvOrders.Columns["Bookkeping"].Visible = false;
         }
 

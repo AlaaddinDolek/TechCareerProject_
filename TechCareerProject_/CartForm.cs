@@ -33,6 +33,7 @@ namespace TechCareerProject_
             this.totalPrice = totalPrice;
             this.productRep = productRep;
             this.profileRep = profileRep;
+            this.orderProductRep = orderProductRep;
             this.userRep = userRep;
             this.appUser = appUser;
             this.bookkeepingRep = bookkeepingRep;
@@ -61,13 +62,15 @@ namespace TechCareerProject_
                 {
                     item.Product.StockStatus -= item.Quantity;
                 }
-                orderRep.Add(order);
-                Bookkeeping bookkeeping = new Bookkeeping { Type = Enums.IncomeExpenseType.Income, Amount = order.TotalPrice ,ID=order.Bookkeeping.ID};
+                
+                Bookkeeping bookkeeping = new Bookkeeping { Type = Enums.IncomeExpenseType.Income, Amount = order.TotalPrice};
 
       
-                bookkeepingRep.Update(bookkeeping);
-                
-                
+                bookkeepingRep.Add(bookkeeping);
+                order.Bookkeeping= bookkeeping;
+                orderRep.Add(order);
+
+
                 MessageBox.Show("Sipariş oluşturuldu");
 
                 rtxtAddress.Text = string.Empty;

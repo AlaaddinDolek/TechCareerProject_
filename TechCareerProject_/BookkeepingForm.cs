@@ -34,7 +34,7 @@ namespace TechCareerProject_
             this.appUser = appUser;
             this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
-            
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -57,6 +57,11 @@ namespace TechCareerProject_
         private void BookkeepingForm_Load(object sender, EventArgs e)
         {
             dgvBookkeeping.DataSource = bookkeepingRep.GetAll();
+            dgvBookkeeping.Columns["Order"].Visible = false;
+
+            // selectedRow.Cells["ID"].Value
+
+
             Array enumValues = Enum.GetValues(typeof(ExpenseType));
             foreach (var value in enumValues)
             {
@@ -66,13 +71,14 @@ namespace TechCareerProject_
 
         private void btnInsertExpense_Click(object sender, EventArgs e)
         {
-            if(txtAmount.Text==string.Empty || txtDescription.Text == string.Empty || cmbExpenseType.SelectedIndex < 0)
+            if (txtAmount.Text == string.Empty || txtDescription.Text == string.Empty || cmbExpenseType.SelectedIndex < 0)
             {
                 MessageBox.Show("Boş alan bırakılamaz");
-            } else
+            }
+            else
             {
-                
-                    Bookkeeping bookkeepingNew = new Bookkeeping { Amount = Convert.ToInt32(txtAmount.Text), Description = txtDescription.Text.Trim(), ExpenseType = (ExpenseType)cmbExpenseType.SelectedItem };
+
+                Bookkeeping bookkeepingNew = new Bookkeeping { Amount = Convert.ToInt32(txtAmount.Text), Description = txtDescription.Text.Trim(), ExpenseType = (ExpenseType)cmbExpenseType.SelectedItem };
                 if (bookkeepingNew.ExpenseType == ExpenseType.Salary)
                 {
 
@@ -87,6 +93,7 @@ namespace TechCareerProject_
                         bookkeepingNew.Type = IncomeExpenseType.Expense;
                         bookkeepingRep.Add(bookkeepingNew);
                         MessageBox.Show("Ekleme başarılı");
+                        dgvBookkeeping.DataSource = bookkeepingRep.GetAll();
                         txtProfileID.Enabled = false;
                     }
                 }
@@ -95,12 +102,13 @@ namespace TechCareerProject_
                     bookkeepingNew.Type = IncomeExpenseType.Expense;
                     bookkeepingRep.Add(bookkeepingNew);
                     MessageBox.Show("Ekleme başarılı");
+                    dgvBookkeeping.DataSource = bookkeepingRep.GetAll();
                     txtProfileID.Enabled = false;
                 }
 
-              
+
             }
-           
+
         }
 
         private void cmbExpenseType_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,22 +116,28 @@ namespace TechCareerProject_
             txtProfileID.Enabled = cmbExpenseType.SelectedItem.ToString() == ExpenseType.Salary.ToString();
         }
 
-        private void dgvBookkeeping_SelectionChanged(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
-            if(dgvBookkeeping.SelectedRows.Count > 0)
+            if (dgvBookkeeping.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvBookkeeping.SelectedRows[0];
                 if (selectedRow != null)
                 {
-                    string stringID = dgvBookkeeping.SelectedRows[0].Cells["Order"].Value.ToString();
-                    dgvOrders.DataSource = orderRep.Find(Convert.ToInt32(stringID));
+                    int id = (int)dgvBookkeeping.SelectedRows[0].Cells["ID"].Value;
+                    dgvOrders.DataSource = orderRep.Where(x => x.ID == id);
                 }
                 else
                 {
                     MessageBox.Show("Detay görüntülemek için işlem satırını seçin");
                 }
             }
-            
+        }
+
+        private void btnViewTotal_Click(object sender, EventArgs e)
+        {
+            decimal total = bookkeepingRep.GetAll().Sum(item => item.Type == IncomeExpenseType.Expense ? -item.Amount : item.Amount);
+            lblTotal.Text = total.ToString();
+
         }
     }
 }
