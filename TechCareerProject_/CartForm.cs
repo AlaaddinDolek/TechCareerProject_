@@ -55,15 +55,19 @@ namespace TechCareerProject_
             {
                 order.Address = rtxtAddress.Text.Trim();
                 order.GetTotalPrice();
+                
 
                 foreach (OrderProduct item in order.OrderProducts)
                 {
                     item.Product.StockStatus -= item.Quantity;
                 }
-                Bookkeeping bookkeeping = new Bookkeeping { Order = order,Type=Enums.IncomeExpenseType.Income};
-                bookkeeping.Amount = order.TotalPrice;
-                bookkeepingRep.Add(bookkeeping);
-                //TODO: orderRep.Add(order);
+                orderRep.Add(order);
+                Bookkeeping bookkeeping = new Bookkeeping { Type = Enums.IncomeExpenseType.Income, Amount = order.TotalPrice ,ID=order.Bookkeeping.ID};
+
+      
+                bookkeepingRep.Update(bookkeeping);
+                
+                
                 MessageBox.Show("Sipariş oluşturuldu");
 
                 rtxtAddress.Text = string.Empty;

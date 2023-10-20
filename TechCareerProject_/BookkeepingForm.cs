@@ -23,6 +23,7 @@ namespace TechCareerProject_
         ProductRepository productRep;
         AppUser appUser;
         BookkeepingRepository bookkeepingRep;
+
         public BookkeepingForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser, BookkeepingRepository bookkeepingRep)
         {
             this.profileRep = profileRep;
@@ -33,6 +34,7 @@ namespace TechCareerProject_
             this.appUser = appUser;
             this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -70,8 +72,8 @@ namespace TechCareerProject_
             } else
             {
                 
-                    Bookkeeping bookkeeping = new Bookkeeping { Amount = Convert.ToInt32(txtAmount.Text), Description = txtDescription.Text.Trim(), ExpenseType = (ExpenseType)cmbExpenseType.SelectedItem };
-                if (bookkeeping.ExpenseType == ExpenseType.Salary)
+                    Bookkeeping bookkeepingNew = new Bookkeeping { Amount = Convert.ToInt32(txtAmount.Text), Description = txtDescription.Text.Trim(), ExpenseType = (ExpenseType)cmbExpenseType.SelectedItem };
+                if (bookkeepingNew.ExpenseType == ExpenseType.Salary)
                 {
 
                     AppUserProfile aup = profileRep.Find(Convert.ToInt32(txtProfileID.Text));
@@ -81,17 +83,17 @@ namespace TechCareerProject_
                     }
                     else
                     {
-                        bookkeeping.EmployeeFullName = $"{aup.FirstName} {aup.LastName}";
-                        bookkeeping.Type = IncomeExpenseType.Expense;
-                        bookkeepingRep.Add(bookkeeping);
+                        bookkeepingNew.EmployeeFullName = $"{aup.FirstName} {aup.LastName}";
+                        bookkeepingNew.Type = IncomeExpenseType.Expense;
+                        bookkeepingRep.Add(bookkeepingNew);
                         MessageBox.Show("Ekleme başarılı");
                         txtProfileID.Enabled = false;
                     }
                 }
                 else
                 {
-                    bookkeeping.Type = IncomeExpenseType.Expense;
-                    bookkeepingRep.Add(bookkeeping);
+                    bookkeepingNew.Type = IncomeExpenseType.Expense;
+                    bookkeepingRep.Add(bookkeepingNew);
                     MessageBox.Show("Ekleme başarılı");
                     txtProfileID.Enabled = false;
                 }

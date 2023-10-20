@@ -18,7 +18,7 @@ namespace TechCareerProject_.Models
         public string Description { get; set; }
         public string EmployeeFullName { get; set; }
 
-        public int OrderID { get; set; }
+        public int? OrderID { get; set; }
 
 
         //Relational Properties

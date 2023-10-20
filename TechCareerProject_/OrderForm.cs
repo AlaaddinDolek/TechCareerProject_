@@ -78,9 +78,10 @@ namespace TechCareerProject_
             }
             else
             {
-                Order order = new Order();
+                Bookkeeping bookkeeping = new Bookkeeping();
+                orderReady.Bookkeeping = bookkeeping;
                 //TODO: sepettekileri order yap ve diğer forma aktar
-                orderRep.Add(orderReady);
+
                 CartForm cartForm = new CartForm(lstCart, totalPrice, orderReady, orderRep, productRep, profileRep, userRep, orderProductRep, appUser, bookkeepingRep);
                 cartForm.Show();
                 Hide();
