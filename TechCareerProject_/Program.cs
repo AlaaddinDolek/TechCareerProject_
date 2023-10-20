@@ -21,9 +21,10 @@ namespace TechCareerProject_
             OrderProductRepository orderProductDB = new OrderProductRepository();
             OrderRepository orderDB = new OrderRepository();
             ProductRepository productDB = new ProductRepository();
+            BookkeepingRepository bookkeepingDB = new BookkeepingRepository();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm(profileDB, userDB, orderProductDB, orderDB, productDB));
+            Application.Run(new LoginForm(profileDB, userDB, orderProductDB, orderDB, productDB,bookkeepingDB));
         }
     }
 }

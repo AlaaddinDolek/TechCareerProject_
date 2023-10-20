@@ -21,8 +21,10 @@ namespace TechCareerProject_
         OrderProductRepository orderProductRep;
         OrderRepository orderRep;
         ProductRepository productRep;
+        BookkeepingRepository bookkeepingRep;
         AppUser appUser;
-        public ProductActionForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser)
+
+        public ProductActionForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser, BookkeepingRepository bookkeepingRep)
         {
             this.profileRep = profileRep;
             this.userRep = userRep;
@@ -30,7 +32,9 @@ namespace TechCareerProject_
             this.orderRep = orderRep;
             this.productRep = productRep;
             this.appUser = appUser;
+            this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
+
         }
         private bool CheckProductName(string productName)
         {
@@ -55,6 +59,7 @@ namespace TechCareerProject_
 
         private void btnInsertProduct_Click_1(object sender, EventArgs e)
         {
+
             if (txtProuctName.Text.Trim() != string.Empty && txtPrice.Text != string.Empty && txtDescription.Text.Trim() != string.Empty)
             {
                 if (CheckProductName(txtProuctName.Text.Trim()))
@@ -96,11 +101,11 @@ namespace TechCareerProject_
         private void btnSearch_Click(object sender, EventArgs e)
         {
             dgvProduct.DataSource = null;
-            if(txtSearchProductName.Text != string.Empty)
+            if (txtSearchProductName.Text != string.Empty)
             {
                 string productName = txtSearchProductName.Text;
-                Product product = productRep.Where(x=>x.ProductName == productName).FirstOrDefault();
-                if(product != null)
+                Product product = productRep.Where(x => x.ProductName == productName).FirstOrDefault();
+                if (product != null)
                 {
                     AddProductToDataGridView(product);
                     btnUpdate.Enabled = true;
@@ -111,11 +116,15 @@ namespace TechCareerProject_
                     txtUpdateProductName.Text = product.ProductName;
                     txtUpdatePrice.Text = product.Price.ToString();
                     txtUpdateDescription.Text = product.Description;
-                } else
+                    nmrUpdateStock.Value = product.StockStatus;
+
+                }
+                else
                 {
                     MessageBox.Show("Aradığınız ürün adı ile ürün bulunamadı");
                 }
-            } else if(txtSearchProductID.Text != string.Empty)
+            }
+            else if (txtSearchProductID.Text != string.Empty)
             {
                 int productID = Convert.ToInt32(txtSearchProductID.Text);
                 Product product = productRep.Where(x => x.ID == productID).FirstOrDefault();
@@ -130,6 +139,7 @@ namespace TechCareerProject_
                     txtUpdateProductName.Text = product.ProductName;
                     txtUpdatePrice.Text = product.Price.ToString();
                     txtUpdateDescription.Text = product.Description;
+                    nmrUpdateStock.Value = product.StockStatus;
                 }
                 else
                 {
@@ -140,7 +150,7 @@ namespace TechCareerProject_
             {
                 MessageBox.Show("Ürün aramak için arama bilgilerinden en az bir tanesini girmeniz gereklidir");
             }
-            
+
         }
 
         private void AddProductToDataGridView(Product product)
@@ -160,17 +170,48 @@ namespace TechCareerProject_
         {
             if (txtUpdateProductName.Text.Trim() != string.Empty && txtUpdatePrice.Text != string.Empty && txtUpdateDescription.Text.Trim() != string.Empty)
             {
-                Product product = productRep.Find(Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["ID"].Index].Value));
-                if (product.ProductName != txtUpdateProductName.Text.Trim())
+                if (dgvProduct.SelectedRows.Count > 0)
                 {
-                    if (CheckProductName(txtUpdateProductName.Text.Trim()))
+                    Product product = productRep.Find(Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["ID"].Index].Value));
+                    if (product.ProductName != txtUpdateProductName.Text.Trim())
                     {
-                        MessageBox.Show("Ürün adı zaten mevcut, başka bir ürün adı girin");
+                        if (CheckProductName(txtUpdateProductName.Text.Trim()))
+                        {
+                            MessageBox.Show("Ürün adı zaten mevcut, başka bir ürün adı girin");
+                            return;
+                        }
+                        if (CheckPriceAndStock(txtUpdatePrice.Text, nmrUpdateStock.Value))
+                        {
+                            Product p = new Product();
+                            p.ID = Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["ID"].Index].Value);
+                            p.AppUserID = Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["AppUserID"].Index].Value);
+                            p.ProductName = txtUpdateProductName.Text.Trim();
+                            p.Price = Convert.ToDecimal(txtUpdatePrice.Text);
+                            p.Description = txtUpdateDescription.Text.Trim();
+                            p.StockStatus = Convert.ToInt32(nmrUpdateStock.Value);
+                            productRep.Update(p);
+                            MessageBox.Show("Güncelleme işlemi başarılı");
+
+                            btnUpdate.Enabled = false;
+                            txtUpdateDescription.Enabled = false;
+                            txtUpdatePrice.Enabled = false;
+                            txtUpdateProductName.Enabled = false;
+                            nmrUpdateStock.Enabled = false;
+                            nmrUpdateStock.Value = 1;
+                            txtUpdateProductName.Text = string.Empty;
+                            txtUpdatePrice.Text = string.Empty;
+                            txtUpdateDescription.Text = string.Empty;
+                            dgvProduct.DataSource = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Fiyat ve Stok bilgilerinden en az birini hatalı girdiniz");
+                        }
+
                     }
-                } else
-                {
-                    if (CheckPriceAndStock(txtUpdatePrice.Text, nmrUpdateStock.Value))
+                    else
                     {
+
                         Product p = new Product();
                         p.ID = Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["ID"].Index].Value);
                         p.AppUserID = Convert.ToInt32(dgvProduct.Rows[0].Cells[dgvProduct.Columns["AppUserID"].Index].Value);
@@ -191,17 +232,13 @@ namespace TechCareerProject_
                         txtUpdatePrice.Text = string.Empty;
                         txtUpdateDescription.Text = string.Empty;
                         dgvProduct.DataSource = null;
-
                     }
-                    else
-                    {
-                        MessageBox.Show("Fiyat ve Stok bilgilerinden en az birini hatalı girdiniz");
-                    }
-
+                }
+                else
+                {
+                    MessageBox.Show("İşlem yapmak istediğiniz ürün satırını seçin");
                 }
             }
-               
-                
             else
             {
                 MessageBox.Show("Boş alan bırakılamaz");
@@ -217,13 +254,13 @@ namespace TechCareerProject_
         {
             if (appUser.Role == Enums.UserRole.Admin)
             {
-                AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser);
+                AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
                 AdminForm.Show();
                 Hide();
             }
             else
             {
-                LoginForm LoginForm = new LoginForm(profileRep, userRep, orderProductRep, orderRep, productRep);
+                LoginForm LoginForm = new LoginForm(profileRep, userRep, orderProductRep, orderRep, productRep, bookkeepingRep);
                 LoginForm.Show();
                 Hide();
             }
@@ -231,12 +268,12 @@ namespace TechCareerProject_
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-          Application.Exit();
+            Application.Exit();
         }
 
         private void txtProuctName_KeyPress(object sender, KeyPressEventArgs e)
         {
-           // EventValidation.CheckSpaceCharacter(e);
+            // EventValidation.CheckSpaceCharacter(e);
         }
     }
 }

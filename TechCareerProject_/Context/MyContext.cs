@@ -23,6 +23,7 @@ namespace TechCareerProject_.Context
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new OrderMap());
             modelBuilder.Configurations.Add(new OrderProductMap());
+            modelBuilder.Configurations.Add(new BookkeepingMap());
         }
 
         public DbSet<AppUser> AppUsers { get; set; }
@@ -30,5 +31,6 @@ namespace TechCareerProject_.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Bookkeeping> Bookkeepings { get; set; }
     }
 }

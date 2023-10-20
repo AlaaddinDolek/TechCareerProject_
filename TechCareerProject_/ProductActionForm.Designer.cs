@@ -76,6 +76,11 @@
             // nmrStock
             // 
             this.nmrStock.Location = new System.Drawing.Point(12, 270);
+            this.nmrStock.Maximum = new decimal(new int[] {
+            15000,
+            0,
+            0,
+            0});
             this.nmrStock.Minimum = new decimal(new int[] {
             1,
             0,
@@ -320,6 +325,11 @@
             // 
             this.nmrUpdateStock.Enabled = false;
             this.nmrUpdateStock.Location = new System.Drawing.Point(703, 266);
+            this.nmrUpdateStock.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.nmrUpdateStock.Minimum = new decimal(new int[] {
             1,
             0,
@@ -358,7 +368,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 426);
+            this.ClientSize = new System.Drawing.Size(983, 449);
             this.Controls.Add(this.txtSearchProductID);
             this.Controls.Add(this.txtSearchProductName);
             this.Controls.Add(this.dgvProduct);

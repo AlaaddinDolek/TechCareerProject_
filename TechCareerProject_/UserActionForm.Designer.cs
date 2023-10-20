@@ -67,6 +67,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.dgvProfile = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSalary = new System.Windows.Forms.TextBox();
+            this.txtUpdateSalary = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProfile)).BeginInit();
             this.SuspendLayout();
@@ -197,7 +201,7 @@
             this.txtSearchUserID.Name = "txtSearchUserID";
             this.txtSearchUserID.Size = new System.Drawing.Size(214, 22);
             this.txtSearchUserID.TabIndex = 36;
-            this.txtSearchUserID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchUserID_KeyPress);
+            this.txtSearchUserID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalary_KeyPress);
             // 
             // txtSearchUsername
             // 
@@ -425,6 +429,41 @@
             this.dgvProfile.Size = new System.Drawing.Size(469, 86);
             this.dgvProfile.TabIndex = 42;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 265);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 16);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Maaş";
+            // 
+            // txtSalary
+            // 
+            this.txtSalary.Location = new System.Drawing.Point(49, 284);
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Size = new System.Drawing.Size(116, 22);
+            this.txtSalary.TabIndex = 17;
+            this.txtSalary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalary_KeyPress);
+            // 
+            // txtUpdateSalary
+            // 
+            this.txtUpdateSalary.Enabled = false;
+            this.txtUpdateSalary.Location = new System.Drawing.Point(818, 282);
+            this.txtUpdateSalary.Name = "txtUpdateSalary";
+            this.txtUpdateSalary.Size = new System.Drawing.Size(116, 22);
+            this.txtUpdateSalary.TabIndex = 17;
+            this.txtUpdateSalary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalary_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(815, 263);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 16);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Maaş";
+            // 
             // UserActionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -460,6 +499,10 @@
             this.Controls.Add(this.txtTC);
             this.Controls.Add(this.txtLastname);
             this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtUpdateSalary);
+            this.Controls.Add(this.txtSalary);
             this.Controls.Add(this.txtFirstname);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label22);
@@ -520,5 +563,9 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DataGridView dgvProfile;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.TextBox txtUpdateSalary;
+        private System.Windows.Forms.Label label10;
     }
 }

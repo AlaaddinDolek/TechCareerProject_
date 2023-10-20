@@ -31,9 +31,9 @@
             this.btnUserAction = new System.Windows.Forms.Button();
             this.btnProductAction = new System.Windows.Forms.Button();
             this.btnOrderAction = new System.Windows.Forms.Button();
-            this.btnStockAction = new System.Windows.Forms.Button();
             this.btnBookkeepingAction = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnViewOrders = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUserAction
@@ -62,31 +62,23 @@
             this.btnOrderAction.Name = "btnOrderAction";
             this.btnOrderAction.Size = new System.Drawing.Size(154, 58);
             this.btnOrderAction.TabIndex = 1;
-            this.btnOrderAction.Text = "Sipariş Sayfası";
+            this.btnOrderAction.Text = "Sipariş Oluşturma";
             this.btnOrderAction.UseVisualStyleBackColor = true;
             this.btnOrderAction.Click += new System.EventHandler(this.btnOrderAction_Click);
             // 
-            // btnStockAction
-            // 
-            this.btnStockAction.Location = new System.Drawing.Point(252, 191);
-            this.btnStockAction.Name = "btnStockAction";
-            this.btnStockAction.Size = new System.Drawing.Size(154, 58);
-            this.btnStockAction.TabIndex = 1;
-            this.btnStockAction.Text = "Ürün Stok İşlemleri";
-            this.btnStockAction.UseVisualStyleBackColor = true;
-            // 
             // btnBookkeepingAction
             // 
-            this.btnBookkeepingAction.Location = new System.Drawing.Point(146, 290);
+            this.btnBookkeepingAction.Location = new System.Drawing.Point(154, 267);
             this.btnBookkeepingAction.Name = "btnBookkeepingAction";
             this.btnBookkeepingAction.Size = new System.Drawing.Size(154, 58);
             this.btnBookkeepingAction.TabIndex = 1;
-            this.btnBookkeepingAction.Text = "Gelir-Gider İşlemleri";
+            this.btnBookkeepingAction.Text = "Gelir-Gider";
             this.btnBookkeepingAction.UseVisualStyleBackColor = true;
+            this.btnBookkeepingAction.Click += new System.EventHandler(this.btnBookkeepingAction_Click);
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(173, 394);
+            this.btnExit.Location = new System.Drawing.Point(175, 347);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(106, 37);
             this.btnExit.TabIndex = 1;
@@ -94,14 +86,24 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnViewOrders
+            // 
+            this.btnViewOrders.Location = new System.Drawing.Point(252, 191);
+            this.btnViewOrders.Name = "btnViewOrders";
+            this.btnViewOrders.Size = new System.Drawing.Size(154, 58);
+            this.btnViewOrders.TabIndex = 1;
+            this.btnViewOrders.Text = "Sipariş İşlemleri";
+            this.btnViewOrders.UseVisualStyleBackColor = true;
+            this.btnViewOrders.Click += new System.EventHandler(this.btnViewOrders_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 486);
-            this.Controls.Add(this.btnStockAction);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnBookkeepingAction);
+            this.Controls.Add(this.btnViewOrders);
             this.Controls.Add(this.btnOrderAction);
             this.Controls.Add(this.btnProductAction);
             this.Controls.Add(this.btnUserAction);
@@ -116,8 +118,8 @@
         private System.Windows.Forms.Button btnUserAction;
         private System.Windows.Forms.Button btnProductAction;
         private System.Windows.Forms.Button btnOrderAction;
-        private System.Windows.Forms.Button btnStockAction;
         private System.Windows.Forms.Button btnBookkeepingAction;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnViewOrders;
     }
 }

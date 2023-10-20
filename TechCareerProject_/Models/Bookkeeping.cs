@@ -13,6 +13,26 @@ namespace TechCareerProject_.Models
 
         public IncomeExpenseType Type { get; set; }
 
+        public ExpenseType? ExpenseType { get; set; }
+
         public string Description { get; set; }
+        public string EmployeeFullName { get; set; }
+
+        public int OrderID { get; set; }
+
+
+        //Relational Properties
+
+        public virtual Order Order { get; set; }
+
+        public Bookkeeping()
+        {
+            if (Order != null)
+            {
+                Amount = Order.TotalPrice;
+                OrderID = Order.ID;
+            }
+        }
+
     }
 }

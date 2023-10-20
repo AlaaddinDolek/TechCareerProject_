@@ -75,9 +75,9 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(130, 474);
+            this.btnExit.Location = new System.Drawing.Point(130, 465);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
+            this.btnExit.Size = new System.Drawing.Size(82, 28);
             this.btnExit.TabIndex = 10;
             this.btnExit.Text = "Çıkış";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -118,9 +118,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(47, 474);
+            this.btnBack.Location = new System.Drawing.Point(38, 465);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(84, 28);
             this.btnBack.TabIndex = 10;
             this.btnBack.Text = "Geri";
             this.btnBack.UseVisualStyleBackColor = true;

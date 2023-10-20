@@ -21,10 +21,11 @@ namespace TechCareerProject_
         OrderProductRepository orderProductRep;
         OrderRepository orderRep;
         ProductRepository productRep;
+        BookkeepingRepository bookkeepingRep;
         AppUser appUser;
         decimal totalPrice = 0;
         Order orderReady = new Order();
-        public OrderForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser)
+        public OrderForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser, BookkeepingRepository bookkeepingRep)
         {
             this.profileRep = profileRep;
             this.userRep = userRep;
@@ -32,22 +33,22 @@ namespace TechCareerProject_
             this.orderRep = orderRep;
             this.productRep = productRep;
             this.appUser = appUser;
+            this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             if (appUser.Role == Enums.UserRole.Admin)
             {
-                AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser);
-                AdminForm.Show();
+                AdminForm adminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
+                adminForm.Show();
                 Hide();
             }
             else
             {
-                LoginForm LoginForm = new LoginForm(profileRep, userRep, orderProductRep, orderRep, productRep);
-                LoginForm.Show();
+                UserForm userForm = new UserForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
+                userForm.Show();
                 Hide();
             }
 
@@ -70,9 +71,21 @@ namespace TechCareerProject_
 
         private void btnCart_Click(object sender, EventArgs e)
         {
-            CartForm cartForm = new CartForm(lstCart,totalPrice, orderReady,orderRep);
-            cartForm.Show();
-            Hide();
+
+            if(lstCart.Items.Count == 0)
+            {
+                MessageBox.Show("Sepete en az 1 ürün ekleyin");
+            }
+            else
+            {
+                Order order = new Order();
+                //TODO: sepettekileri order yap ve diğer forma aktar
+                orderRep.Add(orderReady);
+                CartForm cartForm = new CartForm(lstCart, totalPrice, orderReady, orderRep, productRep, profileRep, userRep, orderProductRep, appUser, bookkeepingRep);
+                cartForm.Show();
+                Hide();
+            }
+            
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -198,7 +211,8 @@ namespace TechCareerProject_
 
         private void OrderForm_Load(object sender, EventArgs e)
         {
-            dgvProducts.DataSource = productRep.GetActives();
+            List<Product> productList = productRep.GetActives();
+            dgvProducts.DataSource = productList.Where(x=>x.StockStatus>0).ToList();
             dgvProducts.Columns["AppUser"].Visible = false;
         }
 
@@ -234,7 +248,7 @@ namespace TechCareerProject_
 
                     lstCart.Items.Add(selectedProduct);
                     totalPrice += price;
-                    lblTotalPrice.Text = $"Toplam Tutar: {totalPrice}";
+                    lblTotalPrice.Text = $"Toplam Tutar: {totalPrice:C2}";
 
 
                 }

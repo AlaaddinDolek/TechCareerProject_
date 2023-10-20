@@ -7,13 +7,18 @@ using TechCareerProject_.Models;
 
 namespace TechCareerProject_.Options
 {
-    public class ProductMap:BaseMap<Product>
+    public class BookkeepingMap:BaseMap<Bookkeeping>
     {
-        public ProductMap()
+        public BookkeepingMap()
         {
-            Property(e => e.Price)
+            Property(e => e.Amount)
             .HasColumnType("money")
             .HasColumnAnnotation("Format", "C2");
+
+            HasOptional(x => x.Order)
+           .WithRequired(x => x.Bookkeeping);
+
+            //TODO: Bu ordermap içindeydi
         }
     }
 }

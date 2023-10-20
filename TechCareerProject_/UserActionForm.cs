@@ -23,8 +23,9 @@ namespace TechCareerProject_
         OrderProductRepository orderProductRep;
         OrderRepository orderRep;
         ProductRepository productRep;
+        BookkeepingRepository bookkeepingRep;
         AppUser appUser;
-        public UserActionForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser)
+        public UserActionForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, AppUser appUser, BookkeepingRepository bookkeepingRep)
         {
             this.profileRep = profileRep;
             this.userRep = userRep;
@@ -32,7 +33,9 @@ namespace TechCareerProject_
             this.orderRep = orderRep;
             this.productRep = productRep;
             this.appUser = appUser;
+            this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
+
         }
 
 
@@ -48,13 +51,14 @@ namespace TechCareerProject_
             return profile;
         }
 
-        private void InsertProfile(string firstName, string lastName, string tcn, AppUser user)
+        private void InsertProfile(string firstName, string lastName, string tcn, AppUser user,decimal salary)
         {
             AppUserProfile profile = new AppUserProfile();
             profile.FirstName = firstName;
             profile.LastName = lastName;
             profile.TCN = tcn;
             profile.AppUser = user;
+            profile.Salary = salary;
             profileRep.Add(profile);
         }
 
@@ -75,7 +79,7 @@ namespace TechCareerProject_
 
         private void btnInsertUser_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text.Trim() == string.Empty || txtPassword.Text.Trim() == string.Empty || txtFirstname.Text.Trim() == string.Empty || txtLastname.Text.Trim() == string.Empty || txtTC.Text == string.Empty)
+            if (txtUsername.Text.Trim() == string.Empty || txtPassword.Text.Trim() == string.Empty || txtFirstname.Text.Trim() == string.Empty || txtLastname.Text.Trim() == string.Empty || txtTC.Text == string.Empty || txtSalary.Text==string.Empty)
             {
                 MessageBox.Show("Alanların hiçbiri boş geçilemez");
             }
@@ -131,13 +135,14 @@ namespace TechCareerProject_
                                 user.Role = UserRole.Admin;
                                 user.InsertedBy = appUser.ID;
                                 userRep.Add(user);
-                                InsertProfile(txtFirstname.Text.Trim(), txtLastname.Text.Trim(), txtTC.Text, user);
+                                InsertProfile(txtFirstname.Text.Trim(), txtLastname.Text.Trim(), txtTC.Text, user,Convert.ToInt32(txtSalary.Text));
                                 MessageBox.Show("Yekili başarıyla eklendi");
                                 txtUsername.Text = string.Empty;
                                 txtPassword.Text = string.Empty;
                                 txtFirstname.Text = string.Empty;
                                 txtLastname.Text = string.Empty;
                                 txtTC.Text = string.Empty;
+                                txtSalary.Text = string.Empty;
                                 cmbRole.Text = string.Empty;
                             }
                             catch (Exception ex)
@@ -151,13 +156,14 @@ namespace TechCareerProject_
                             user.Role = UserRole.User;
                             user.InsertedBy = appUser.ID;
                             userRep.Add(user);
-                            InsertProfile(txtFirstname.Text.Trim(), txtLastname.Text.Trim(), txtTC.Text, user);
+                            InsertProfile(txtFirstname.Text.Trim(), txtLastname.Text.Trim(), txtTC.Text, user, Convert.ToInt32(txtSalary.Text));
                             MessageBox.Show("Kullanıcı başarıyla eklendi");
                             txtUsername.Text = string.Empty;
                             txtPassword.Text = string.Empty;
                             txtFirstname.Text = string.Empty;
                             txtLastname.Text = string.Empty;
                             txtTC.Text = string.Empty;
+                            txtSalary.Text= string.Empty;
                             cmbRole.Text = string.Empty;
                         } else
                         {
@@ -180,17 +186,13 @@ namespace TechCareerProject_
 
         private void AddUserToDataGridView(AppUser user)
         {
-            List<AppUser> users = new List<AppUser>();
-            users.Add(user);
-            dgvAppUser.DataSource = users;
+            dgvAppUser.DataSource = new List<AppUser> { user };
             dgvAppUser.Columns["AppUserProfile"].Visible = false;
         }
 
         private void AddProfileToDataGridView(AppUserProfile profile)
         {
-            List<AppUserProfile> profiles = new List<AppUserProfile>();
-            profiles.Add(profile);
-            dgvProfile.DataSource = profiles;
+            dgvProfile.DataSource = new List<AppUserProfile> { profile };
             dgvProfile.Columns["AppUser"].Visible = false;
         }
 
@@ -218,7 +220,15 @@ namespace TechCareerProject_
                         txtUpdateUsername.Enabled = true;
                         txtUpdateTC.Enabled = true;
                         txtUpdatePassword.Enabled = true;
+                        txtUpdateSalary.Enabled = true;
                         cmbUpdateRole.Enabled = true;
+
+                        txtUpdateFirstName.Text=user.AppUserProfile.FirstName;
+                        txtUpdateLastName.Text=user.AppUserProfile.LastName;
+                        txtUpdateUsername.Text = user.Username;
+                        txtUpdateTC.Text = user.AppUserProfile.TCN;
+                        txtUpdatePassword.Text = user.Password;
+                        txtUpdateSalary.Text = user.AppUserProfile.Salary.ToString();
                     }
                     else
                     {
@@ -247,7 +257,15 @@ namespace TechCareerProject_
                         txtUpdateUsername.Enabled = true;
                         txtUpdateTC.Enabled = true;
                         txtUpdatePassword.Enabled = true;
+                        txtUpdateSalary.Enabled = true;
                         cmbUpdateRole.Enabled = true;
+
+                        txtUpdateFirstName.Text=user.AppUserProfile.FirstName;
+                        txtUpdateLastName.Text=user.AppUserProfile.LastName;
+                        txtUpdateUsername.Text = user.Username;
+                        txtUpdateTC.Text = user.AppUserProfile.TCN;
+                        txtUpdatePassword.Text = user.Password;
+                        txtUpdateSalary.Text = user.AppUserProfile.Salary.ToString();
                     }
                     else
                     {
@@ -261,7 +279,8 @@ namespace TechCareerProject_
             }
         }
 
-        private void txtSearchUserID_KeyPress(object sender, KeyPressEventArgs e)
+
+        private void txtSalary_KeyPress(object sender, KeyPressEventArgs e)
         {
             EventValidation.CheckIdKeyPress(e);
         }
@@ -269,26 +288,20 @@ namespace TechCareerProject_
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 
-            if (txtUpdateUsername.Text.Trim() == string.Empty || txtUpdatePassword.Text.Trim() == string.Empty || txtUpdateFirstName.Text.Trim() == string.Empty || txtUpdateLastName.Text.Trim() == string.Empty || txtUpdateTC.Text == string.Empty)
+            if (txtUpdateUsername.Text.Trim() == string.Empty || txtUpdatePassword.Text.Trim() == string.Empty || txtUpdateFirstName.Text.Trim() == string.Empty || txtUpdateLastName.Text.Trim() == string.Empty || txtUpdateTC.Text == string.Empty||txtUpdateSalary.Text==string.Empty)
             {
                 MessageBox.Show("Alanların hiçbiri boş geçilemez");
             }
             else
             {
                 AppUser au = userRep.Find(Convert.ToInt32(dgvAppUser.Rows[0].Cells[dgvAppUser.Columns["ID"].Index].Value));
-                if(au.Username != txtUpdateUsername.Text.Trim())
+                if(au.Username != txtUpdateUsername.Text.Trim()&& CheckUsername(txtUpdateUsername.Text.Trim()) != null)
                 {
-                    if (CheckUsername(txtUpdateUsername.Text.Trim()) != null)
-                    {
-                        MessageBox.Show("Kullanıcı Adı daha önce alınmış");
-                    }
+                     MessageBox.Show("Kullanıcı Adı daha önce alınmış");                  
                 } 
-                else if(au.AppUserProfile.TCN != txtUpdateTC.Text)
+                else if(au.AppUserProfile.TCN != txtUpdateTC.Text && CheckTC(txtUpdateTC.Text) != null)
                 {
-                    if (CheckTC(txtUpdateTC.Text) != null)
-                    {
-                        MessageBox.Show("Bu TC numarasına ait kullanıcı bulunmaktadır");
-                    }
+                     MessageBox.Show("Bu TC numarasına ait kullanıcı bulunmaktadır");
                 }
                 else
                 {
@@ -343,6 +356,7 @@ namespace TechCareerProject_
                             profile.FirstName = txtUpdateFirstName.Text.Trim();
                             profile.LastName = txtUpdateLastName.Text.Trim();
                             profile.TCN = txtUpdateTC.Text;
+                            profile.Salary=Convert.ToDecimal(txtUpdateSalary.Text.Trim());
                             profile.AppUser = user;
                             profileRep.Update(profile);
 
@@ -354,6 +368,7 @@ namespace TechCareerProject_
                             txtUpdateUsername.Enabled = false;
                             txtUpdateTC.Enabled = false;
                             txtUpdatePassword.Enabled = false;
+                            txtUpdateSalary.Enabled = false;
                             cmbUpdateRole.Enabled = false;
                             dgvAppUser.DataSource = null;
                             dgvProfile.DataSource = null;
@@ -367,23 +382,17 @@ namespace TechCareerProject_
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (appUser.Role == Enums.UserRole.Admin)
-            {
-                AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser);
+           
+                AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
                 AdminForm.Show();
                 Hide();
-            }
-            else
-            {
-                LoginForm LoginForm = new LoginForm(profileRep, userRep, orderProductRep, orderRep, productRep);
-                LoginForm.Show();
-                Hide();
-            }
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

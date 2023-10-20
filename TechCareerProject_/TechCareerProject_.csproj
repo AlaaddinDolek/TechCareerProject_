@@ -71,6 +71,7 @@
     <Compile Include="Common\EventValidation.cs" />
     <Compile Include="Context\MyContext.cs" />
     <Compile Include="DesignPattern\SingletonPattern\DBTool.cs" />
+    <Compile Include="Enums\ExpenseType.cs" />
     <Compile Include="Enums\IncomeExpenseType.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Enums\UserRole.cs" />
@@ -86,11 +87,19 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Options\BookkeepingMap.cs" />
     <Compile Include="OrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderViewForm.Designer.cs">
+      <DependentUpon>OrderViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ProductActionForm.cs">
       <SubType>Form</SubType>
@@ -98,19 +107,13 @@
     <Compile Include="ProductActionForm.Designer.cs">
       <DependentUpon>ProductActionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="StockForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StockForm.Designer.cs">
-      <DependentUpon>StockForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Repositories\BookkeepingRepository.cs" />
     <Compile Include="UserActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserActionForm.Designer.cs">
       <DependentUpon>UserActionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\AppUserProfile.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -132,6 +135,15 @@
     <Compile Include="Repositories\OrderProductRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="UserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserForm.Designer.cs">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BookkeepingForm.resx">
+      <DependentUpon>BookkeepingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CartForm.resx">
       <DependentUpon>CartForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderViewForm.resx">
+      <DependentUpon>OrderViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductActionForm.resx">
       <DependentUpon>ProductActionForm.cs</DependentUpon>
@@ -156,11 +171,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="StockForm.resx">
-      <DependentUpon>StockForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserActionForm.resx">
       <DependentUpon>UserActionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

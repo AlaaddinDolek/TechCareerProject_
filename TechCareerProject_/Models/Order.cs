@@ -24,6 +24,7 @@ namespace TechCareerProject_.Models
         public virtual List<OrderProduct> OrderProducts { get; set; }
         public virtual AppUser AppUser { get; set; }
 
+        public virtual Bookkeeping Bookkeeping { get; set; }
         public Order()
         {
             Status = Status.Preparing;

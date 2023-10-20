@@ -32,6 +32,8 @@
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.rtxtAddress = new System.Windows.Forms.RichTextBox();
             this.btnOrder = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstCart
@@ -69,11 +71,33 @@
             this.btnOrder.UseVisualStyleBackColor = true;
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(435, 201);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(88, 32);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Geri";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(544, 201);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(85, 32);
+            this.btnExit.TabIndex = 3;
+            this.btnExit.Text = "Çıkış";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // CartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(817, 326);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.rtxtAddress);
             this.Controls.Add(this.lblTotalPrice);
@@ -92,5 +116,7 @@
         private System.Windows.Forms.Label lblTotalPrice;
         private System.Windows.Forms.RichTextBox rtxtAddress;
         private System.Windows.Forms.Button btnOrder;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnExit;
     }
 }

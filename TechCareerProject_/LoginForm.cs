@@ -20,14 +20,15 @@ namespace TechCareerProject_
         OrderProductRepository orderProductRep;
         OrderRepository orderRep;
         ProductRepository productRep;
-        public LoginForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep)
+        BookkeepingRepository bookkeepingRep;
+        public LoginForm(AppUserProfileRepository profileRep, AppUserRepository userRep, OrderProductRepository orderProductRep, OrderRepository orderRep, ProductRepository productRep, BookkeepingRepository bookkeepingRep)
         {
             this.profileRep = profileRep;
             this.userRep = userRep;
             this.orderProductRep = orderProductRep;
             this.orderRep = orderRep;
             this.productRep = productRep;
-
+            this.bookkeepingRep = bookkeepingRep;
             InitializeComponent();
         }
 
@@ -35,13 +36,13 @@ namespace TechCareerProject_
         {
             lblKalanHak.Text = $"Kalan hakkınız: {remaining}";
 
-            //AppUser appUser = new AppUser
-            //{
-            //    Username = "admin",
-            //    Password = "password",
-            //    Role = Enums.UserRole.Admin
-            //};
-            //userRep.Add(appUser);
+            AppUser appUser = new AppUser
+            {
+                Username = "admin",
+                Password = "password",
+                Role = Enums.UserRole.Admin
+            };
+            userRep.Add(appUser);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -53,14 +54,14 @@ namespace TechCareerProject_
             {
                 if (appUser.Role == Enums.UserRole.Admin)
                 {
-                    AdminForm AdminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser);
-                    AdminForm.Show();
+                    AdminForm adminForm = new AdminForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
+                    adminForm.Show();
                     Hide();
                 }
                 else if (appUser.Role == Enums.UserRole.User)
                 {
-                    OrderForm OrderForm = new OrderForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser);
-                    OrderForm.Show();
+                    UserForm userForm = new UserForm(profileRep, userRep, orderProductRep, orderRep, productRep, appUser, bookkeepingRep);
+                    userForm.Show();
                     Hide();
                 }
             }
