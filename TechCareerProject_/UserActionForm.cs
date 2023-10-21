@@ -71,6 +71,10 @@ namespace TechCareerProject_
         {
             EventValidation.CheckTCTextChange(e, txtTC);
         }
+        private void txtUpdateTC_TextChanged(object sender, EventArgs e)
+        {
+            EventValidation.CheckTCTextChange(e, txtUpdateTC);
+        }
 
         private void txtTC_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -394,5 +398,6 @@ namespace TechCareerProject_
             Application.Exit();
         }
 
+      
     }
 }

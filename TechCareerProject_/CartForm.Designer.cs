@@ -34,6 +34,7 @@
             this.btnOrder = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstCart
@@ -55,7 +56,7 @@
             // 
             // rtxtAddress
             // 
-            this.rtxtAddress.Location = new System.Drawing.Point(435, 21);
+            this.rtxtAddress.Location = new System.Drawing.Point(436, 50);
             this.rtxtAddress.Name = "rtxtAddress";
             this.rtxtAddress.Size = new System.Drawing.Size(338, 88);
             this.rtxtAddress.TabIndex = 2;
@@ -63,9 +64,9 @@
             // 
             // btnOrder
             // 
-            this.btnOrder.Location = new System.Drawing.Point(435, 127);
+            this.btnOrder.Location = new System.Drawing.Point(436, 156);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(143, 32);
+            this.btnOrder.Size = new System.Drawing.Size(179, 32);
             this.btnOrder.TabIndex = 3;
             this.btnOrder.Text = "Sipariş Oluştur";
             this.btnOrder.UseVisualStyleBackColor = true;
@@ -73,7 +74,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(435, 201);
+            this.btnBack.Location = new System.Drawing.Point(436, 201);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(88, 32);
             this.btnBack.TabIndex = 3;
@@ -83,7 +84,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(544, 201);
+            this.btnExit.Location = new System.Drawing.Point(530, 201);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(85, 32);
             this.btnExit.TabIndex = 3;
@@ -91,11 +92,21 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(433, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Adres";
+            // 
             // CartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(817, 326);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnOrder);
@@ -118,5 +129,6 @@
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label1;
     }
 }

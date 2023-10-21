@@ -325,7 +325,7 @@
             this.txtUpdateTC.Name = "txtUpdateTC";
             this.txtUpdateTC.Size = new System.Drawing.Size(116, 22);
             this.txtUpdateTC.TabIndex = 52;
-            this.txtUpdateTC.TextChanged += new System.EventHandler(this.txtTC_TextChanged_1);
+            this.txtUpdateTC.TextChanged += new System.EventHandler(this.txtUpdateTC_TextChanged);
             this.txtUpdateTC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTC_KeyPress);
             // 
             // txtUpdateLastName

@@ -65,9 +65,9 @@ namespace TechCareerProject_
                 
                 Bookkeeping bookkeeping = new Bookkeeping { Type = Enums.IncomeExpenseType.Income, Amount = order.TotalPrice};
 
-      
+                order.Bookkeeping = bookkeeping;
                 bookkeepingRep.Add(bookkeeping);
-                order.Bookkeeping= bookkeeping;
+                
                 orderRep.Add(order);
 
 

@@ -114,7 +114,7 @@
             // 
             this.btnInsertExpense.Location = new System.Drawing.Point(874, 403);
             this.btnInsertExpense.Name = "btnInsertExpense";
-            this.btnInsertExpense.Size = new System.Drawing.Size(82, 34);
+            this.btnInsertExpense.Size = new System.Drawing.Size(121, 34);
             this.btnInsertExpense.TabIndex = 1;
             this.btnInsertExpense.Text = "Gider Ekle";
             this.btnInsertExpense.UseVisualStyleBackColor = true;
@@ -204,9 +204,8 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(34, 214);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 16);
+            this.lblTotal.Size = new System.Drawing.Size(0, 16);
             this.lblTotal.TabIndex = 8;
-            this.lblTotal.Text = "label7";
             // 
             // btnViewTotal
             // 

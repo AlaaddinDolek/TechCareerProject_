@@ -125,6 +125,9 @@ namespace TechCareerProject_
                 {
                     int id = (int)dgvBookkeeping.SelectedRows[0].Cells["ID"].Value;
                     dgvOrders.DataSource = orderRep.Where(x => x.ID == id);
+                    dgvOrders.Columns["AppUser"].Visible = false;
+                    dgvOrders.Columns["Bookkeeping"].Visible = false;
+                    
                 }
                 else
                 {
