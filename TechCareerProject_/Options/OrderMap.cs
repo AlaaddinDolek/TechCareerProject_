@@ -21,5 +21,4 @@ namespace TechCareerProject_.Options
         }
     }
 }
-//TODO: chatgpt son aramanın en altında hata aldın, normalizasyon hatası, bunu çöz. buraya "sipariş ver" butonundan geldin
 

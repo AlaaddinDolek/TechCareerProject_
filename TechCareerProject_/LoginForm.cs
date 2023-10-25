@@ -36,13 +36,13 @@ namespace TechCareerProject_
         {
             lblKalanHak.Text = $"Kalan hakkınız: {remaining}";
 
-            AppUser appUser = new AppUser
-            {
-                Username = "admin",
-                Password = "password",
-                Role = Enums.UserRole.Admin
-            };
-            userRep.Add(appUser);
+            //AppUser appUser = new AppUser
+            //{
+            //    Username = "admin",
+            //    Password = "password",
+            //    Role = Enums.UserRole.Admin
+            //};
+            //userRep.Add(appUser);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

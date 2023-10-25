@@ -139,7 +139,7 @@ namespace TechCareerProject_
         private void btnViewTotal_Click(object sender, EventArgs e)
         {
             decimal total = bookkeepingRep.GetAll().Sum(item => item.Type == IncomeExpenseType.Expense ? -item.Amount : item.Amount);
-            lblTotal.Text = total.ToString();
+            lblTotal.Text = $"Toplam: {total:C2}";
 
         }
     }

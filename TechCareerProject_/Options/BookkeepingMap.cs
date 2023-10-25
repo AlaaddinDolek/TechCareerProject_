@@ -18,7 +18,7 @@ namespace TechCareerProject_.Options
             HasOptional(x => x.Order)
            .WithRequired(x => x.Bookkeeping);
 
-            //TODO: Bu ordermap içindeydi
+           
         }
     }
 }
